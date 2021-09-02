@@ -1,0 +1,7 @@
+<div class="container">
+  <mat-form-field appearance="fill">
+    <mat-label>Start Typing!</mat-label>
+    <input matInput (keypress)="onKeyPress($event)" [(ngModel)]="type">
+  </mat-form-field>
+  <button mat-raised-button color="primary">Restart</button>
+</div>
