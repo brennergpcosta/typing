@@ -39,14 +39,12 @@ router.put('/:id', (req, res) => {
     const id = parseInt(req.params.id)
     const member = Members.find(member => member.id === id)
 
-    console.log(member)
-
     if(member){
-        const updatedMembers = req.body
+        const updatedMember = req.body
         Members.forEach((member) => {
-            if(member.id === parseInt(updatedMembers.id)){
-                member.name = member.name ? updatedMembers.name : member.name
-                member.email = member.email ? updatedMembers.email : member.email
+            if(member.id === id){
+                member.name = member.name ? updatedMember.name : member.name
+                member.email = member.email ? updatedMember.email : member.email
 
                 res.json({ msg: `Member was updated`, member })
             }
@@ -54,6 +52,20 @@ router.put('/:id', (req, res) => {
     }else{
         res.status(400).json({ msg: `No member with the id of ${req.params.id}` })
     }
+})
+
+// Delete One Member
+router.delete('/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+    const member = Members.find(member => member.id === id)
+
+    if(member){
+        newMembers = Members.filter(member => member.id !== id)
+        res.status(200).json({ msg: 'Member deleted', newMembers})
+    }else{
+        res.status(400).json({ msg: `No member found with id of ${id}`})
+    }
+
 })
 
 module.exports = router
