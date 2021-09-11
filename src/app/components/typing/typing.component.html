@@ -1,7 +1,18 @@
 <div class="container">
-  <mat-form-field appearance="fill">
-    <mat-label>Start Typing!</mat-label>
-    <input matInput (keypress)="onKeyPress($event)" [(ngModel)]="type">
-  </mat-form-field>
-  <button mat-raised-button color="primary">Restart</button>
+  <div class="words-list">
+    <p *ngFor="let word of wordsList; let i = index"
+    [ngStyle]="{'color': statusCheck(i) ? 'blue' : 'red'}">
+    {{ word }}</p>
+  </div>
+
+  <div class="typing">
+    <mat-form-field>
+      <mat-label>Start Typing!</mat-label>
+      <input matInput (keypress)="onKeyPress($event)" [(ngModel)]="type">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onRestart()">Restart</button>
+  </div>
+  <div class="pontos">
+    <p>{{ points }}</p>
+  </div>
 </div>

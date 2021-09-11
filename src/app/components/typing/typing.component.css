@@ -2,7 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   height: 100%;
+}
+
+.words-list {
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+}
+
+.words-list > p {
+  width: 10%;
+  text-align: center;
 }
 
 button {
