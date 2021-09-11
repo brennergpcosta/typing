@@ -1,8 +1,20 @@
 <div class="container">
-  <div class="words-list">
-    <p *ngFor="let word of wordsList; let i = index"
-    [ngStyle]="{'color': statusCheck(i) ? 'blue' : 'red'}">
-    {{ word }}</p>
+  <div class="words-container">
+
+    <div class="word-list" *ngFor="let word of wordsList; let wi = index">
+      <span *ngIf="wi !== index"
+      [ngStyle]="{'color': statusCheck(wi) ? 'blue' : 'black'}"
+      >{{ word }}
+      </span>
+
+      <div *ngIf="wi === index">
+        <span *ngFor="let letter of word.split(''); let li = index"
+        [ngStyle]="{color: letterColor(li) ? 'blue' : 'black'}">
+        {{ letter }}
+        </span>
+      </div>
+    </div>
+
   </div>
 
   <div class="typing">

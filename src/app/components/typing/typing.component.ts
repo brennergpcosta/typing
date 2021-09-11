@@ -13,8 +13,6 @@ export class TypingComponent implements OnInit {
   wordsList: string[] = [];
   index: number = 0;
   points: number = 0;
-  isRight: boolean = true;
-  paintedWords: boolean [] = [];
   statusIndex: boolean [] = [];
 
   type: string = '';
@@ -28,42 +26,46 @@ export class TypingComponent implements OnInit {
   onKeyPress(event: any) {
     let keyPressed = event.code;
     if (keyPressed === 'Space') {
-      if (this.index == this.wordsList.length) {
-        this.wordsList = this.typeServ.wordsRandom();
-        this.index = 0;
-        this.points = 0;
+      if (this.index == this.wordsList.length-1) {
+        this.onRestart()
+      }else{
+        this.isRight(this.index);
+        console.log(`Index: ${this.index} | isRight: ${this.isRight(this.index)} | Status Index: ${this.statusIndex}`)
+        this.index++;
+        this.type = '';
       }
-
-      console.log(
-        `type ${this.index + 1}: ${typeof this.type}, wordslist: ${typeof this
-          .wordsList[this.index]}`
-      );
-      if (this.type.trim() === this.wordsList[this.index]) {
-        this.isRight = true;
-        this.points++;
-        this.statusIndex[this.index] = true;
-      } else {
-        this.isRight = false;
-        this.statusIndex[this.index] = false;
-        console.log('errou');
-        console.log(
-          'resposta: ' + this.wordsList[this.index] + ' | escrito: ' + this.type
-        );
-      }
-      this.index++;
-      this.type = '';
-      console.log(this.isRight);
-      console.log(`status Index: ${this.statusIndex}`)
     }
   }
 
   onRestart() {
     this.index = 0;
     this.points = 0;
+    this.statusIndex = [];
+    this.type = '';
+    this.wordsList = this.typeServ.wordsRandom();
     console.log('TYPING RESTARED');
   }
 
   statusCheck(index: number){
     return this.statusIndex[index]
+  }
+
+  isRight(index: number){
+    if(this.wordsList[index] == this.type.trim()){
+      this.statusIndex[index] = true;
+      this.points++;
+      return true;
+    }else{
+      this.statusIndex[index] = false;
+      return false;
+    }
+  }
+
+  currentWord(index: number){
+    return this.wordsList[index].split('')
+  }
+
+  letterColor(letterIndex: number) {
+    return this.wordsList[this.index].split('')[letterIndex] == this.type.trim().split('')[letterIndex]
   }
 }
