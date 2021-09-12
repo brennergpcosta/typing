@@ -1,15 +1,15 @@
 <div class="container">
   <div class="words-container">
 
-    <div class="word-list" *ngFor="let word of wordsList; let wi = index">
+    <div class="words" *ngFor="let word of wordsList; let wi = index">
       <span *ngIf="wi !== index"
       [ngStyle]="{'color': statusCheck(wi) ? 'blue' : 'black'}"
       >{{ word }}
       </span>
 
-      <div *ngIf="wi === index">
+      <div class="words" *ngIf="wi === index">
         <span *ngFor="let letter of word.split(''); let li = index"
-        [ngStyle]="{color: letterColor(li) ? 'blue' : 'black'}">
+        [ngStyle]="{color: letterColor(li) ? 'blue' : 'black', backgroundcolor: wi === index ? 'blue' : 'none'}">
         {{ letter }}
         </span>
       </div>

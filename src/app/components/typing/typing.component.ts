@@ -30,7 +30,7 @@ export class TypingComponent implements OnInit {
         this.onRestart()
       }else{
         this.isRight(this.index);
-        console.log(`Index: ${this.index} | isRight: ${this.isRight(this.index)} | Status Index: ${this.statusIndex}`)
+        console.log(`Index: ${this.index} | Status Index: ${this.statusIndex}`)
         this.index++;
         this.type = '';
       }
