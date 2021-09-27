@@ -8,7 +8,7 @@
       </span>
 
       <div class="words" *ngIf="wi === index">
-        <span *ngFor="let letter of word.split(''); let li = index"
+        <span class="letters" *ngFor="let letter of word.split(''); let li = index"
         [ngStyle]="{color: letterColor(li) ? 'blue' : 'black', backgroundcolor: wi === index ? 'blue' : 'none'}">
         {{ letter }}
         </span>
