@@ -21,12 +21,42 @@ export class WordsService {
     "presidente",
     "escrever",
     "nenhum",
+    "dor",
+    "oito",
+    "sentido",
+    "ter",
+    "porque",
+    "essas",
+    "aposto",
+    "algumas",
+    "caminho",
+    "conseguiu",
+    "ai",
+    "lhes",
+    "capaz",
+    "tá",
+    "dizes",
+    "viste",
+    "senhor",
+    "qualquer",
+    "estar",
+    "aquela",
+    "prazer",
+    "conversar",
+    "saiam",
+    "umas",
+    "droga",
+    "lista",
+    "seguro",
+    "isto",
+    "sim",
+    "menos",
   ]
 
   wordsRandom() {
     let newRandomArray: string[] = [];
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 200; i++) {
       newRandomArray.push(this.words[Math.floor(Math.random() * this.words.length)])
     }
     console.log(newRandomArray)
